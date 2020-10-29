@@ -71,19 +71,37 @@ void printSym(symtab* ptr)
 	    printf(" References = %d \n", ptr->counter);
 }
 
+int symcmp(const void* a, const void* b)
+{
+	char *sa = (*((symtab**)a))->lexeme;
+	char *sb = (*((symtab**)b))->lexeme;
+	return strcmp(sa, sb);
+}
+
 void printSymTab()
 {
+	symtab* sorted[TABLE_SIZE];
+	int sortedi = 0;
+
     int i;
     printf("----- Symbol Table ---------\n");
     for (i=0; i<TABLE_SIZE; i++)
     {
         symtab* symptr;
-	symptr = hash_table[i];
-	while (symptr != NULL)
-	{
-            printf("====>  index = %d \n", i);
-	    printSym(symptr);
-	    symptr=symptr->front;
-	}
+		symptr = hash_table[i];
+		while (symptr != NULL)
+		{
+			sorted[sortedi++] = symptr;
+			// printf("====>  index = %d \n", i);
+			// printSym(symptr);
+			symptr=symptr->front;
+		}
     }
+	printf("sortedi = %d\n", sortedi);
+	qsort(sorted, sortedi, sizeof(symtab*), symcmp);
+    for (i=0; i<sortedi; i++)
+	{
+		printSym(sorted[i]);
+	}
+
 }
