@@ -48,7 +48,7 @@ bslash  "\\"
 ident   {letter}({letter}|{digit}|"_")*
 iconst  {digit}+
 fconst  ({digit}+{dot}{digit}*)|({dot}{digit}+)
-sconst  {dquote}([^{dquote}{bslash}]*{bslash}.)*{dquote}
+sconst  {dquote}([^\"\\]|{bslash}.)*{dquote}
 
 plus    "+"
 minus   "-"
@@ -74,7 +74,7 @@ rbrace  "}"
 comma   ","
 semicol ";"
 
-comment "/*"[^*]*([^*]*"*"[^/])*"*"*"*/"
+comment \/\*([^*]|(\*+[^*\/]))*\*+\/
 error   .
 
 %%
