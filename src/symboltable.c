@@ -89,7 +89,7 @@ void printSymTab()
         while (symptr != NULL)
         {
             if (sortedi == cap)
-                sorted = realloc(sorted, cap *= 2);
+                sorted = realloc(sorted, (cap *= 2) * sizeof(symtab*));
             sorted[sortedi++] = symptr;
             symptr=symptr->front;
         }
