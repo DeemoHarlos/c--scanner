@@ -47,7 +47,7 @@ bslash  "\\"
 
 ident   {letter}({letter}|{digit}|"_")*
 iconst  {digit}+
-fconst  ({digit}+{dot})|({dot}{digit}+)
+fconst  ({digit}+{dot}{digit}*)|({dot}{digit}+)
 sconst  {dquote}([^{dquote}{bslash}]*{bslash}.)*{dquote}
 
 plus    "+"
@@ -108,7 +108,7 @@ error   .
 {semicol}   // return SP_semicol;
 
 {iconst}    // return CONST_int;
-{fconst}    // return CONST_float;
+{fconst}    // return CONST_float; 
 {sconst}    // return CONST_string;
 {dot}       // return SP_dot;
 
