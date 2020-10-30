@@ -80,7 +80,7 @@ error   .
 %%
 
 {newline}   linenumber += 1;
-{comment}   printf("Comment : %s\n", yytext);
+{comment}   printf("%s\n", yytext);
 {space}     {}
 
 {plus}      // return OP_plus;

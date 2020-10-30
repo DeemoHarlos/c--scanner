@@ -67,8 +67,7 @@ void insertID(char *name){
 
 void printSym(symtab* ptr) 
 {
-	    printf(" Name = %s \n", ptr->lexeme);
-	    printf(" References = %d \n", ptr->counter);
+    printf("%s\t\t%d\n", ptr->lexeme, ptr->counter);
 }
 
 int symcmp(const void* a, const void* b)
@@ -84,7 +83,6 @@ void printSymTab()
 	int sortedi = 0;
 
     int i;
-    printf("----- Symbol Table ---------\n");
     for (i=0; i<TABLE_SIZE; i++)
     {
         symtab* symptr;
@@ -92,13 +90,11 @@ void printSymTab()
 		while (symptr != NULL)
 		{
 			sorted[sortedi++] = symptr;
-			// printf("====>  index = %d \n", i);
-			// printSym(symptr);
 			symptr=symptr->front;
 		}
     }
-	printf("sortedi = %d\n", sortedi);
 	qsort(sorted, sortedi, sizeof(symtab*), symcmp);
+	printf("\nFrequency of identifiers:\n");
     for (i=0; i<sortedi; i++)
 	{
 		printSym(sorted[i]);
