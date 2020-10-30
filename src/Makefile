@@ -17,5 +17,5 @@ lex.yy.c: lexer.l
 	$(LEX) $(LIB) lexer.l
 
 clean:
-	rm -f $(TARGET) $(OBJECT) 
+	rm -f $(TARGET) $(OBJECT) lex.yy.c
 
